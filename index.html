@@ -64,7 +64,7 @@
                   <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
                   <li><a href="about.html" class="nav-link">About</a></li>
                   <li><a href="trips.html" class="nav-link">Trips</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
+                  <li><a href="map.html" class="nav-link">Карта</a></li>
                   <li><a href="contact.html" class="nav-link">Контакты</a></li>
                 </ul>
               </nav>
@@ -115,92 +115,168 @@
 
     <div class="site-section">
 
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-md-7">
-            <div class="heading-39101 mb-5">
-              <span class="backdrop text-center">Journey</span>
-              <span class="subtitle-39191">Journey</span>
-              <h3>Your Journey Starts Here</h3>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$200.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Dignissimos debitis</a></h2>
-              </div>
-            </div>
-          </div>
+      
 
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_2.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$390.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Consectetur adipisicing</a></h2>
-              </div>
-            </div>
-          </div>
+      <div id="map"></div>
+      <script type="text/javascript">
+        // Функция ymaps.ready() будет вызвана, когда
+        // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+    
+    
+        //var koordinates_hotel = [], i, j;
+        //for (i=0; i<740; i++) {
+            //koordinates_hotel.push(i);
+        //     koordinates_hotel[i] = [];
+        //     for (j=0; j<1; j++) {
+        //         koordinates_hotel[i].push(hotel_koord_x[i], hotel_koord_y[i]);
+        //     }
+        // }
+        // function onlyUnique(value, index, self) {
+        //   return self.indexOf(value) === index;
+        // }
+    
+    
+        // var koordinates_museum = [], i, j;
+        // for (i=0; i<214; i++) {
+        //     koordinates_museum.push(i);
+        //     koordinates_museum[i] = [];
+        //     for (j=0; j<1; j++) {
+        //         koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
+        //     }
+        // }
+        
+    
+    
+    
+        ymaps.ready(init);
+        function init(){
+            // Создание карты.
+            var myMap = new ymaps.Map("map", {
+                center: [59.94506272, 30.09158751],
+                zoom: 9,
+                controls: ['zoomControl']
+              // }, {
+              //   searchControlProvider: 'yandex#search'
+            });
+            // hotelButton = new ymaps.control.Button("Кнопка");
+            // map.controls.add(hotelButton, {float: 'right'});
+    
+    
+    
+            // hotelButton = new ymaps.control.Button({
+            //   data: {
+            //     content: "Кнопка",
+            //     image: "images/hotel_loc.png"
+            //   }});
+            // map.controls.add(hotelButton, {float: 'right'});
+    
+    
+    
+            // for (var i = 0; i<koordinates_hotel.length; i++) {
+            //   var coo = koordinates_hotel[i];
+            //   myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]]);
+            //   //myPlacemark = new ymaps.Placemark(myMap());
+            //   myMap.geoObjects.add(myPlacemark);
+            //   myPlacemark.events
+            //   .add('mouseenter', function (e) {
+            //       // Ссылку на объект, вызвавший событие,
+            //       // можно получить из поля 'target'.
+            //       e.get('target').options.set('preset', 'islands#greenIcon');
+            //   })
+            //   .add('mouseleave', function (e) {
+            //       e.get('target').options.unset('preset');
+            //   });
+    
+            // }
+            
+    
+            var myClusterer = new ymaps.Clusterer();
+            for (var i = 0; i<koordinates_hotel.length; i++) {
+              console.log(koordinates_hotel[i][0]);
+              var coo = koordinates_hotel[i];
+              console.log(coo);
+              myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
+                  // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+                  balloonContentHeader: hotel_name[i],
+                  balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>' ].join(''),
+                  balloonContentFooter: hotel_site[i],
+                  //clusterCaption: "<strong><s>Еще</s> одна</strong>",
+                  hintContent: hotel_region[i] },
+                // }, {
+                //   preset: 'islands#blueIcon'
+                // }, 
+                {
+                // Опции.
+                // Необходимо указать данный тип макета.
+                iconLayout: 'default#image',
+                // Своё изображение иконки метки.
+                iconImageHref: 'images/hotel_loc.png',
+                // Размеры метки.
+                iconImageSize: [30, 30],
+                // Смещение левого верхнего угла иконки относительно
+                // её "ножки" (точки привязки).
+                iconImageOffset: [-5, -38]
+            }),
+    
+    
+      
+              console.log(myPlacemark);
+              myMap.geoObjects.add(myPlacemark);
+              myClusterer.add(myPlacemark);
+            };
+            
+            myMap.geoObjects.add(myClusterer);
+    
+    
+    
+    
+    
+    
+            var myClusterer2 = new ymaps.Clusterer();
+            for (var i = 0; i<koordinates_museum.length; i++) {
+              console.log(koordinates_museum[i][0]);
+              var coo = koordinates_museum[i];
+              console.log(coo);
+              myPlacemark = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
+                  // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+                  balloonContentHeader: museum_name[i],
+                  balloonContentBody: [museum_type[i], '<br/>', museum_email[i], '<br/>' ].join(''),
+                  balloonContentFooter: museum_site[i],
+                  //clusterCaption: "<strong><s>Еще</s> одна</strong>",
+                  hintContent: museum_region[i] },
+                // }, {
+                //   preset: 'islands#redIcon'
+                // }, 
+                {
+                // Опции.
+                // Необходимо указать данный тип макета.
+                iconLayout: 'default#image',
+                // Своё изображение иконки метки.
+                iconImageHref: 'images/museum_loc.png',
+                // Размеры метки.
+                iconImageSize: [30, 30],
+                // Смещение левого верхнего угла иконки относительно
+                // её "ножки" (точки привязки).
+                iconImageOffset: [-5, -38]
+            }),
+    
+    
+    
+    
+    
+              console.log(myPlacemark);
+              myMap.geoObjects.add(myPlacemark);
+              myClusterer2.add(myPlacemark);
+            };
+            
+            myMap.geoObjects.add(myClusterer2);
+        }
+    
+        
+        
+      </script>
+    
 
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_3.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$180.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Temporibus aperiam</a></h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_4.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$600.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Expedita fugiat</a></h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_5.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$330.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Consectetur adipisicing</a></h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
-            <div class="listing-item">
-              <div class="listing-image">
-                <img src="images/img_6.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="listing-item-content">
-                <a class="px-3 mb-3 category bg-primary" href="#">$450.00</a>
-                <h2 class="mb-1"><a href="trip-single.html">Consectetur Amet</a></h2>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
     </div>
 
     <div class="site-section">
@@ -488,6 +564,7 @@
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
+            <p></p>
             </div>
           </div>
 
