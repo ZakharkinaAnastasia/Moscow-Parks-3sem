@@ -61,11 +61,12 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="index.html" class="nav-link">Home</a></li>
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="trips.html" class="nav-link">Trips</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li class="active"><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
+                  <li><a href="statistics.php" class="nav-link">Статистика</a></li>
+                  <li><a href="trips.html" class="nav-link">Парки</a></li>
+                  <li><a href="map.php" class="nav-link">Карта</a></li>
+                  <li><a href="contact.php" class="nav-link">Обратная связь</a></li>
+                  <li><a href="account.php" class="nav-link">Личный кабинет</a></li>
                 </ul>
               </nav>
             </div>
@@ -97,9 +98,9 @@
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-10">
             <div class="heading-39101 mb-5">
-              <span class="backdrop text-center">Contact</span>
-              <span class="subtitle-39191">Contact Us</span>
-              <h3>Contact Us</h3>
+              <span class="backdrop text-center">Feedback</span>
+              <!-- <span class="subtitle-39191">Свяжитесь с нами</span> -->
+              <h3>Свяжитесь с нами</h3>
             </div>
           </div>
         </div>
@@ -109,40 +110,48 @@
             <form action="#" method="post">
               <div class="form-group row">
                 <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" name = "name" class="form-control" placeholder="Имя">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" name = "surname" class="form-control" placeholder="Фамилия">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
+                  <input type="text" name = "email" class="form-control" placeholder="Email">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Write your message." cols="30" rows="10"></textarea>
+                  <textarea name="message" id="" class="form-control" placeholder="Сообщение" cols="30" rows="10"></textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6 mr-auto">
-                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Отправить">
                 </div>
               </div>
             </form>
+            <?php
+            $day_today = date("Y-m-d H:i:s"); //текущее время
+            include "connection.php";
+            if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['message'])){
+                $query = "INSERT INTO feedback (name, surname, email, message, day, time) VALUES ('{$_POST['name']}', '{$_POST['surname']}', '{$_POST['email']}', '{$_POST['message']}', '{$day_today}', '{$day_today}')"; 
+                $result = mysqli_query($link, $query);
+            }
+            ?>
           </div>
           <div class="col-lg-4 ml-auto">
             <div class="bg-white p-3 p-md-5">
-              <h3 class="text-black mb-4">Contact Info</h3>
+              <h3 class="text-black mb-4">Контактная информация</h3>
               <ul class="list-unstyled footer-link">
                 <li class="d-block mb-3">
-                  <span class="d-block text-black">Address:</span>
-                  <span>34 Street Name, City Name Here, United States</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
-                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
+                  <span class="d-block text-black">Адрес:</span>
+                  <span>г. Москва, ул. Большая Семеновская, 38</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Телефон:</span><span>+7 (916) 077-51-80</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>moscowparks@gmail.com</span></li>
               </ul>
             </div>
           </div>

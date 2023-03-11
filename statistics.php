@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="css/aos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js"></script>
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -61,11 +63,12 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="index.html" class="nav-link">Home</a></li>
-                  <li class="active"><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="trips.html" class="nav-link">Trips</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
+                  <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
+                  <li><a href="statistics.php" class="nav-link">Статистика</a></li>
+                  <li><a href="trips.html" class="nav-link">Парки</a></li>
+                  <li><a href="map.php" class="nav-link">Карта</a></li>
+                  <li><a href="contact.php" class="nav-link">Обратная связь</a></li>
+                  <li><a href="account.php" class="nav-link">Личный кабинет</a></li>
                 </ul>
               </nav>
             </div>
@@ -81,8 +84,8 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-5" data-aos="fade-up">
-              <h1 class="mb-3 text-white">About Us</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta veritatis in tenetur doloremque, maiores doloribus officia iste. Dolores.</p>
+              <h1 class="mb-3 text-white">Статистика</h1>
+              <p>Распределение парков по административным округам</p>
               
             </div>
           </div>
@@ -92,23 +95,42 @@
 
 
     <div class="site-section py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div class="heading-39101 mb-5">
-              <span class="backdrop">Story</span>
-              <span class="subtitle-39191">Discover Story</span>
-              <h3>Our Story</h3>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quae expedita fugiat quo incidunt, possimus temporibus aperiam eum, quaerat sapiente.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos debitis enim a pariatur molestiae.</p>
-          </div>
-          <div class="col-md-6" data-aos="fade-right">
-            <img src="images/traveler.jpg" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
+      <canvas id="barChartID"></canvas>
     </div>
+    <script>
+        // Bar chart
+        new Chart($("#barChartID"), {
+            type: 'bar',
+            options: {
+                legend: { display: true },
+                indexAxis: 'x',
+                title: {
+                    display: true,
+                    text: 'Bar Chart using ChartJS library'
+                }
+            },
+            data: {
+                labels: ['Восточный административный округ', 'Западный административный округ', 'Зеленоградский административный округ', 'Новомосковский административный округ', 'Северный административный округ', 'Северо-Восточный административный округ', 'Северо-Западный административный округ', 'Центральный административный округ', 'Юго-Восточный административный округ', 'Юго-Западный административный округ', 'Южный административный округ'],
+                datasets: [
+                    {
+                        label: "Статистика наличия парков по округам",
+                        backgroundColor: ["#FF6388",
+                "#63FF84",
+                "#84FF63",
+                "#8463FF",
+                "#6384FF",
+                "#DCDCE0",
+                '#BCC0CD', 
+                '#9DA4B9', 
+                '#7D87A6', 
+                '#5D6B92',
+                '#5996F7'],
+                        data: [12, 11, 5, 1, 13, 25, 19, 17, 7, 18, 26]
+                    }
+                ]
+            }            
+        });
+    </script>
 
 
     <div class="site-section py-5">
@@ -302,6 +324,6 @@
     <script src="js/main.js"></script>
 
   </body>
-
+  <script type="text/javascript" src="diagram.js"></script>
 </html>
 
