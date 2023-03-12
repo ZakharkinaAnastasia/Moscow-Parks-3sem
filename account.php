@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Trips &mdash; Website Template by Colorlib</title>
+  <title>MoscowParks</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,7 +47,7 @@
             <div class="col-3 ">
               <div class="site-logo">
                 <a href="index.html" class="font-weight-bold">
-                  <img src="images/logo.png" alt="Image" class="img-fluid">
+                  <img src="images/logoMoscowParks.png" alt="Image" class="img-fluid">
                 </a>
               </div>
             </div>
@@ -61,12 +61,12 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
+                  <li><a href="index.php" class="nav-link">Главная</a></li>
                   <li><a href="statistics.php" class="nav-link">Статистика</a></li>
-                  <li><a href="trips.html" class="nav-link">Парки</a></li>
+                  <!-- <li><a href="trips.html" class="nav-link">Парки</a></li> -->
                   <li><a href="map.php" class="nav-link">Карта</a></li>
                   <li><a href="contact.php" class="nav-link">Обратная связь</a></li>
-                  <li><a href="account.php" class="nav-link">Личный кабинет</a></li>
+                  <li class="active"><a href="account.php" class="nav-link">Личный кабинет</a></li>
                 </ul>
               </nav>
             </div>
@@ -117,11 +117,11 @@
               $password = $_POST['password'];
               
               $query = "SELECT * FROM users WHERE email='$user_email' AND password='$password'";
+
               $result = mysqli_query($link, $query);
               $user = mysqli_fetch_assoc($result);
               if (!empty($user)) {
                 $_SESSION['auth'] = true;
-
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['fav'] = null;
                 header("Location: account.php");
@@ -137,19 +137,25 @@
                     <div class="container">
                         <div class="row block-9 justify-content-center mb-5">
                             <div class="col-md-8 mb-md-5">
-                                <h5 class="account">Выбранная гостиница</h5>
-                                <p>БЕЛЫЕ НОЧИ</p>
-                            </div>
-                            <div class="col-md-8 mb-md-5">
-                                <h5 class="account">Избранные культурные объекты</h5>
-                                <p>Смольный собор</p>
-                                <p>Аничков Дворец</p>
-                                <p>Музей истории фотографии</p>
+                                <h5 class="account">Избранные парковые территории</h5>
+                                <p>«Парк Дворца творчества детей и юношества»</p>
+                                <p>«Битцевский лес»</p>
+                                <p>Ландшафтный заказник «Тропарёвский»</p>
                             </div>
                         </div>
                     </div>
-                </section>
-                <section class="ftco-section contact-section">
+                </section>';
+                if ($_SESSION['email'] == 'adminnastzah03@inbox.ru'){ 
+                  echo '<section class="ftco-section contact-section"> 
+                  <table><thead><tr><th>Имя</th><th>Фамилия</th><th>Почта</th><th>Сообщение</th><th>Дата</th><th>Время</th></tr></thead><tbody>';
+                  $sql = mysqli_query($link, 'SELECT * FROM feedback');
+                  while ($result = mysqli_fetch_array($sql)) {
+                    echo '<tr>' . '<td>' . $result['name'] . '</td>' . '<td>' . $result['surname'] . '</td>' . '<td>' . $result['email'] . '</td>' .'<td>' . $result['message'] . '</td>' . '<td>' . $result['day'] . '</td>' .'<td>' . $result['time'] . '</td>' . '</tr>';
+                  };
+                  echo '</tbody></table></section>';
+                };
+
+                echo'<section class="ftco-section contact-section">
                     <div class="container">
                         <div class="row block-9 justify-content-center mb-5">
                             <div class="col-md-8 mb-md-5">
@@ -190,67 +196,51 @@
       </div>
     </div> <!-- END .site-section -->
 
-    <footer class="site-footer bg-light">
+    <footer class="ftco-footer ftco-section">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <h2 class="footer-heading mb-3">Instagram</h2>
-            <div class="row">
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_1.jpg" alt="Image" class="img-fluid"></a>
-              </div>
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_2.jpg" alt="Image" class="img-fluid"></a>
-              </div>
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_3.jpg" alt="Image" class="img-fluid"></a>
-              </div>
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_4.jpg" alt="Image" class="img-fluid"></a>
-              </div>
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_5.jpg" alt="Image" class="img-fluid"></a>
-              </div>
-              <div class="col-4 gal_col">
-                <a href="#"><img src="images/insta_6.jpg" alt="Image" class="img-fluid"></a>
-              </div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">MoscowParks</h2>
+              <p>Парки Москвы</p>
+              <ul class="ftco-footer-social list-unstyled mt-5">
+                <li class="ftco-animate"><a href="@"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="@"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="@"><span class="icon-instagram"></span></a></li>
+                <li class="ftco-animate"><a href="https://t.me/nastzah"><span class="icon-telegram"></span></a></li>
+              </ul>
             </div>
           </div>
-          <div class="col-lg-8 ml-auto">
-            <div class="row">
-              <div class="col-lg-6 ml-auto">
-                <h2 class="footer-heading mb-4">Quick Links</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Contact Us</a></li>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <a href="#about_course_project"><h2 class="ftco-heading-2">О проекте</h2></a>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Главная</a></li>
+                <li><a href="map.php"><span class="icon-long-arrow-right mr-2"></span>Перейти к карте</a></li>
+                <li><a href="contact.php"><span class="icon-long-arrow-right mr-2"></span>Обратная связь</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Остались вопросы?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text" id = "MoscowRussia">Москва, Россия</span></li>
+                  <!-- <li><span class="icon icon-phone"></span><span class="text"><p id="email_copy">+79160775180</p></span></li> -->
+                  <li><span class="icon icon-envelope pr-4"></span><span class="text">nastzah03@inbox.ru</span></li>
                 </ul>
               </div>
-              <div class="col-lg-6">
-                <h2 class="footer-heading mb-4">Newsletter</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt odio iure animi ullam quam, deleniti rem!</p>
-                <form action="#" class="d-flex" class="subscribe">
-                  <input type="text" class="form-control mr-3" placeholder="Email">
-                  <input type="submit" value="Send" class="btn btn-primary">
-                </form>
-              </div>
-              
             </div>
           </div>
         </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-              <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            </div>
+        <hr class="hr-line">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <a href="https://data.mos.ru/opendata/1465?ysclid=lf4901gjqp118224706"> Источник открытых данных: Парковые территории </a>
+            <p>Copyright &copy;Захаркина А.Д., <script>document.write(new Date().getFullYear());</script></p>
+            <p><?php require "date.php" ?></p>
           </div>
-
         </div>
       </div>
     </footer>

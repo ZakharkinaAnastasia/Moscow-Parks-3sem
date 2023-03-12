@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Trips &mdash; Website Template by Colorlib</title>
+  <title>MoscowParks</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +46,7 @@
 
             <div class="col-3 ">
               <div class="site-logo">
-                <a href="index.html" class="font-weight-bold">
+                <a class="font-weight-bold">
                   <img src="images/logoMoscowParks.png" alt="Image" class="img-fluid">
                 </a>
               </div>
@@ -61,9 +61,9 @@
 
               <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
+                  <li class="active"><a href="index.php" class="nav-link">Главная</a></li>
                   <li><a href="statistics.php" class="nav-link">Статистика</a></li>
-                  <li><a href="trips.html" class="nav-link">Парки</a></li>
+                  <!-- <li><a href="trips.html" class="nav-link">Парки</a></li> -->
                   <li><a href="map.php" class="nav-link">Карта</a></li>
                   <li><a href="contact.php" class="nav-link">Обратная связь</a></li>
                   <li><a href="account.php" class="nav-link">Личный кабинет</a></li>
@@ -77,6 +77,7 @@
 
       </header>
 
+      <main>
     <div class="ftco-blocks-cover-1">
       <div class="site-section-cover overlay" style="background-image: url('images/fon2.jpg')">
         <div class="container">
@@ -103,7 +104,7 @@
             <div class="heading-39101 mb-5">
               <span class="backdrop">Moscow</span>
               <span class="subtitle-39191">Парки Москвы</span>
-              <h3>гордость и украшение города</h3>
+              <h3>ГОРДОСТЬ И УКРАШЕНИЕ ГОРОДА</h3>
             </div>
             <p>Парки Москвы – гордость и украшение города. Вековые зеленые массивы, украшающие центральную часть столицы и окружающие тихие пригороды, 
               традиционно служат популярным местом семейных прогулок, активного и уединенного отдыха. В парковых зонах исторического центра сохранились старинные усадьбы, 
@@ -111,177 +112,12 @@
               Глобальная реконструкция исторических парковых территорий Москвы проводится с 2004 года и будет продолжаться до полного восстановления архитектурно-ландшафтных комплексов.</p>
           </div>
           <div class="col-md-6" data-aos="fade-right">
-            <img src="images/tree.jpg" alt="Image" class="img-fluid">
+            <img src="images/trees.jpg" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="site-section">
-
-      
-
-      <div id="map"></div>
-      <script type="text/javascript">
-        // Функция ymaps.ready() будет вызвана, когда
-        // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-    
-    
-        //var koordinates_hotel = [], i, j;
-        //for (i=0; i<740; i++) {
-            //koordinates_hotel.push(i);
-        //     koordinates_hotel[i] = [];
-        //     for (j=0; j<1; j++) {
-        //         koordinates_hotel[i].push(hotel_koord_x[i], hotel_koord_y[i]);
-        //     }
-        // }
-        // function onlyUnique(value, index, self) {
-        //   return self.indexOf(value) === index;
-        // }
-    
-    
-        // var koordinates_museum = [], i, j;
-        // for (i=0; i<214; i++) {
-        //     koordinates_museum.push(i);
-        //     koordinates_museum[i] = [];
-        //     for (j=0; j<1; j++) {
-        //         koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
-        //     }
-        // }
-        
-    
-    
-    
-        ymaps.ready(init);
-        function init(){
-            // Создание карты.
-            var myMap = new ymaps.Map("map", {
-                center: [59.94506272, 30.09158751],
-                zoom: 9,
-                controls: ['zoomControl']
-              // }, {
-              //   searchControlProvider: 'yandex#search'
-            });
-            // hotelButton = new ymaps.control.Button("Кнопка");
-            // map.controls.add(hotelButton, {float: 'right'});
-    
-    
-    
-            // hotelButton = new ymaps.control.Button({
-            //   data: {
-            //     content: "Кнопка",
-            //     image: "images/hotel_loc.png"
-            //   }});
-            // map.controls.add(hotelButton, {float: 'right'});
-    
-    
-    
-            // for (var i = 0; i<koordinates_hotel.length; i++) {
-            //   var coo = koordinates_hotel[i];
-            //   myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]]);
-            //   //myPlacemark = new ymaps.Placemark(myMap());
-            //   myMap.geoObjects.add(myPlacemark);
-            //   myPlacemark.events
-            //   .add('mouseenter', function (e) {
-            //       // Ссылку на объект, вызвавший событие,
-            //       // можно получить из поля 'target'.
-            //       e.get('target').options.set('preset', 'islands#greenIcon');
-            //   })
-            //   .add('mouseleave', function (e) {
-            //       e.get('target').options.unset('preset');
-            //   });
-    
-            // }
-            
-    
-            var myClusterer = new ymaps.Clusterer();
-            for (var i = 0; i<koordinates_hotel.length; i++) {
-              console.log(koordinates_hotel[i][0]);
-              var coo = koordinates_hotel[i];
-              console.log(coo);
-              myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
-                  // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
-                  balloonContentHeader: hotel_name[i],
-                  balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>' ].join(''),
-                  balloonContentFooter: hotel_site[i],
-                  //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-                  hintContent: hotel_region[i] },
-                // }, {
-                //   preset: 'islands#blueIcon'
-                // }, 
-                {
-                // Опции.
-                // Необходимо указать данный тип макета.
-                iconLayout: 'default#image',
-                // Своё изображение иконки метки.
-                iconImageHref: 'images/hotel_loc.png',
-                // Размеры метки.
-                iconImageSize: [30, 30],
-                // Смещение левого верхнего угла иконки относительно
-                // её "ножки" (точки привязки).
-                iconImageOffset: [-5, -38]
-            }),
-    
-    
-      
-              console.log(myPlacemark);
-              myMap.geoObjects.add(myPlacemark);
-              myClusterer.add(myPlacemark);
-            };
-            
-            myMap.geoObjects.add(myClusterer);
-    
-    
-    
-    
-    
-    
-            var myClusterer2 = new ymaps.Clusterer();
-            for (var i = 0; i<koordinates_museum.length; i++) {
-              console.log(koordinates_museum[i][0]);
-              var coo = koordinates_museum[i];
-              console.log(coo);
-              myPlacemark = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
-                  // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
-                  balloonContentHeader: museum_name[i],
-                  balloonContentBody: [museum_type[i], '<br/>', museum_email[i], '<br/>' ].join(''),
-                  balloonContentFooter: museum_site[i],
-                  //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-                  hintContent: museum_region[i] },
-                // }, {
-                //   preset: 'islands#redIcon'
-                // }, 
-                {
-                // Опции.
-                // Необходимо указать данный тип макета.
-                iconLayout: 'default#image',
-                // Своё изображение иконки метки.
-                iconImageHref: 'images/museum_loc.png',
-                // Размеры метки.
-                iconImageSize: [30, 30],
-                // Смещение левого верхнего угла иконки относительно
-                // её "ножки" (точки привязки).
-                iconImageOffset: [-5, -38]
-            }),
-    
-    
-    
-    
-    
-              console.log(myPlacemark);
-              myMap.geoObjects.add(myPlacemark);
-              myClusterer2.add(myPlacemark);
-            };
-            
-            myMap.geoObjects.add(myClusterer2);
-        }
-    
-        
-        
-      </script>
-    
-
-    </div>
     <div class="site-section">
 
       <div class="container">
@@ -308,9 +144,7 @@
                 <p>&mdash; Парк Горького</p>
                 <blockquote>&ldquo;Cамое популярное место отдыха москвичей. 
                   В основном площадка рассчитана на молодежную аудиторию, 
-                  но здесь найдется развлечение для семейной прогулки и досуг для старших посетителей. 
-                  Территория парка включает в себя партерную часть, Пушкинскую набережную и Нескучный сад, 
-                  который переходит в Воробьевы горы. &rdquo;</blockquote>
+                  но здесь найдется развлечение для семейной прогулки и досуг для старших посетителей. </blockquote>
                 </div>
               </div>    
               
@@ -320,11 +154,13 @@
 
               <div class="testimonial-39191 d-flex">
                 <div class="mr-4">
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid">
+                  <img src="images/Sokolniki.jpg" alt="Image" class="img-fluid">
                 </div>
                 <div>
-                <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, accusamus, facilis! Placeat praesentium alias porro aperiam facilis accusantium veniam?&rdquo;</blockquote>
-                <p>&mdash; John Doe</p>
+                <p>&mdash; Парк «Сокольники»</p>
+                <blockquote>Парк «Сокольники» в Москве — один из самых больших и посещаемых парков Европы, 
+                  особенно популярный у семейной аудитории. Летом в парке работают пляжи и бассейны, 
+                  парк аттракционов, кинотеатр на открытом воздухе, спортивные площадки, пункты проката. </blockquote>
                 </div>
               </div>    
               
@@ -336,11 +172,14 @@
 
               <div class="testimonial-39191 d-flex">
                 <div class="mr-4">
-                  <img src="images/person_1.jpg" alt="Image" class="img-fluid">
+                  <img src="images/VDNKHa.png" alt="Image" class="img-fluid">
                 </div>
                 <div>
-                <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, accusamus, facilis! Placeat praesentium alias porro aperiam facilis accusantium veniam?&rdquo;</blockquote>
-                <p>&mdash; John Doe</p>
+                <p>&mdash; ВДНХ</p>
+                <blockquote>Парк на ВДНХ — крупнейший выставочный, музейный и культурно-развлекательный 
+                  комплекс в мире, одно из самых популярных общественных пространств Москвы. 49 объектов уникального 
+                  архитектурного комплекса признаны памятниками культурного наследия, а ВДНХ — достопримечательностью 
+                  всей страны.</blockquote>
                 </div>
               </div>    
               
@@ -350,11 +189,13 @@
 
               <div class="testimonial-39191 d-flex">
                 <div class="mr-4">
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid">
+                  <img src="images/Zaryadie.jpg" alt="Image" class="img-fluid">
                 </div>
                 <div>
-                <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, accusamus, facilis! Placeat praesentium alias porro aperiam facilis accusantium veniam?&rdquo;</blockquote>
-                <p>&mdash; John Doe</p>
+                <p>&mdash; Парк «Зарядье»</p>
+                <blockquote>Парк «Зарядье» открыли на 870-летие Москвы. Площадка считается одной из самых 
+                  живописных в городе: здесь высажены растения четырех природных зон России и оборудован «парящий» 
+                  мост над Москвой-рекой.</blockquote>
                 </div>
               </div>    
               
@@ -365,81 +206,7 @@
 
       </div>
     </div>
-
-
-    <div class="site-section">
-
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-md-10">
-            <div class="heading-39101 mb-5">
-              <span class="backdrop text-center">Blog</span>
-              <span class="subtitle-39191">Updates</span>
-              <h3>Our Blog</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="post-entry-1 h-100">
-              <a href="single.html">
-                <img src="images/img_1.jpg" alt="Image"
-                 class="img-fluid">
-              </a>
-              <div class="post-entry-1-contents">
-                
-                <h2><a href="single.html">Lorem ipsum dolor sit amet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="post-entry-1 h-100">
-              <a href="single.html">
-                <img src="images/img_2.jpg" alt="Image"
-                 class="img-fluid">
-              </a>
-              <div class="post-entry-1-contents">
-                
-                <h2><a href="single.html">Lorem ipsum dolor sit amet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="post-entry-1 h-100">
-              <a href="single.html">
-                <img src="images/img_3.jpg" alt="Image"
-                 class="img-fluid">
-              </a>
-              <div class="post-entry-1-contents">
-                
-                <h2><a href="single.html">Lorem ipsum dolor sit amet</a></h2>
-                <span class="meta d-inline-block mb-3">July 17, 2019 <span class="mx-2">by</span> <a href="#">Admin</a></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eos soluta, dolore harum molestias consectetur.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_1.jpg')">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="font-weight-bold text-white">Join and Trip With Us</h2>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ut, doloremque quo molestiae nesciunt officiis veniam, beatae dignissimos!</p>
-            <p class="mb-0"><a href="#" class="btn btn-primary text-white py-3 px-4">Get In Touch</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </main>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -461,8 +228,8 @@
               <a href="#about_course_project"><h2 class="ftco-heading-2">О проекте</h2></a>
               <ul class="list-unstyled">
                 <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Главная</a></li>
-                <li><a href="begin.php"><span class="icon-long-arrow-right mr-2"></span>Начать поиск</a></li>
-                <li><a href="help.php"><span class="icon-long-arrow-right mr-2"></span>Помощь</a></li>
+                <li><a href="map.php"><span class="icon-long-arrow-right mr-2"></span>Перейти к карте</a></li>
+                <li><a href="contact.php"><span class="icon-long-arrow-right mr-2"></span>Обратная связь</a></li>
               </ul>
             </div>
           </div>
@@ -482,7 +249,9 @@
         <hr class="hr-line">
         <div class="row">
           <div class="col-md-12 text-center">
+            <a href="https://data.mos.ru/opendata/1465?ysclid=lf4901gjqp118224706"> Источник открытых данных: Парковые территории </a>
             <p>Copyright &copy;Захаркина А.Д., <script>document.write(new Date().getFullYear());</script></p>
+            <p><?php require "date.php" ?></p>
           </div>
         </div>
       </div>
